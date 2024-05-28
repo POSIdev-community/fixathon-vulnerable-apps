@@ -1,0 +1,20 @@
+<!--This page is for filling from server-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cosmicjs/5.6.0/cosmic.min.css">
+</head>
+<body>
+    <article>
+        <h1>{{ username }}</h1>
+        <li>
+            <!-- articles list -->
+            {% for article in articles %}
+                <h2><a href="/article/{{ article.articleId }}">{{ article.title }}</a></h2>
+                <p>{{ article.content }}</p>
+            {% endfor %}
+        </li>
+    </article>
+</body>
+</html>

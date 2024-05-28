@@ -1,0 +1,32 @@
+venv
+.ai
+__pycache__
+python/static/profile_photo*.png
+test_output.log
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+#VS Database files
+.vs/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+Build/
+x64/
+#build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+#NUNIT
+*.VisualState.xml
+TestResult.xml
