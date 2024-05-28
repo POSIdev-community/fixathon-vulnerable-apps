@@ -1,0 +1,13 @@
+{
+    "ProjectName": "Go",
+    "ProgrammingLanguages": [
+        "Go"
+    ],
+    "ScanModules": [
+        "StaticCodeAnalysis"
+    ],
+    "SkipGitIgnoreFiles": true,
+    "GoSettings": {
+        "UsePublicAnalysisMethod": false
+    }
+}

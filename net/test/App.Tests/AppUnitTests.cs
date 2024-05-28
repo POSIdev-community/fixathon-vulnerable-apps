@@ -169,7 +169,6 @@ namespace App.Tests
         [Order(2)]
         public async Task ArticlesController_Search()
         {
-            Assert.Fail("Not implemented")
             using var httpRequest = new HttpRequestMessage(HttpMethod.Post, "/api/search");
             var search = JsonConvert.SerializeObject(new SearchViewModel { Search = "Р’СЃРµР»РµРЅРЅРѕР№" });
             httpRequest.Content = new StringContent(search, Encoding.UTF8, "text/json");
@@ -210,8 +209,8 @@ namespace App.Tests
                 httpRequest.Headers.Add(Cookie, AuthCookie);
                 httpRequest.Content = new FormUrlEncodedContent(new Dictionary<string, string>()
                 {
-                    ["title"] = "Новый заголовок",
-                    ["content"] = "Моё содержание",
+                    ["title"] = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+                    ["content"] = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
                 });
 
                 var response = await httpClient.SendAsync(httpRequest);
@@ -220,7 +219,7 @@ namespace App.Tests
 
             using (var httpRequest = new HttpRequestMessage(HttpMethod.Post, "/api/search"))
             {
-                var search = JsonConvert.SerializeObject(new SearchViewModel { Search = "заголовок" });
+                var search = JsonConvert.SerializeObject(new SearchViewModel { Search = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" });
                 httpRequest.Content = new StringContent(search, Encoding.UTF8, "text/json");
                 var response = await httpClient.SendAsync(httpRequest);
                 response.EnsureSuccessStatusCode();
@@ -228,8 +227,8 @@ namespace App.Tests
                 var json = await response.Content.ReadAsStringAsync();
                 var articles = JsonConvert.DeserializeObject<ArticleViewModel[]>(json);
                 Assert.AreEqual(1, articles.Length);
-                Assert.AreEqual("Новый заголовок", articles[0].Title);
-                Assert.AreEqual("Моё содержание", articles[0].Content);
+                Assert.AreEqual("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", articles[0].Title);
+                Assert.AreEqual("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", articles[0].Content);
                 Assert.AreEqual(1, articles[0].UserId);
             }
         }
@@ -241,8 +240,8 @@ namespace App.Tests
             using var httpRequest = new HttpRequestMessage(HttpMethod.Post, "/api/article_create");
             httpRequest.Content = new FormUrlEncodedContent(new Dictionary<string, string>()
             {
-                ["title"] = "Новый заголовок",
-                ["content"] = "Моё содержание",
+                ["title"] = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+                ["content"] = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
             });
 
             var response = await httpClient.SendAsync(httpRequest);
