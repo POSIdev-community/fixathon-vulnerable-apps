@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: PHDays App
+  version: 1.6.2
+  description: API for phdays vulnerable web app
+paths:
+  /index.html:
+    get:
+      summary: возвращает html index.html
+      description: ''
+      operationId: index-get
+      responses:
+        default:
+          description: Default error sample response
+  /login.html:
+    get:
+      summary: возвращает html login.html
+      description: ''
+      operationId: login-get
+      responses:
+        default:
+          description: Default error sample response
+  api/login/:
+    post:
+      summary: логинит по username password из формы и редиректит по адрессу
+      description: ''
+      operationId: login-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        default:
+          description: Default error sample response
+  api/logout:
+    post:
+      summary: разлогинивает и редиректит по адрессу
+      operationId: logout-post
+      parameters:
+      - in: query
+        name: redirect
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default error sample response
+  api/articles:
+    get:
+      operationId: articles-get
+      summary: возвращает список всех статей из бд
+      responses:
+        default:
+          description: Default error sample response
+  api/articles/{id}:
+    get:
+      summary: возвращает шаблон article_{id}.html
+      operationId: article-get
+      parameters:
+      - in: path
+        required: true
+        name: id
+        schema:
+          type: number
+      responses:
+        default:
+          description: Default error sample response
+  /search.html:
+    get:
+      summary: возвращает html search.html
+      description: ''
+      operationId: search-html-get
+      responses:
+        default:
+          description: Default error sample response
+  /api/search:
+    post:
+      summary: поиск статьи по строке. SQLi
+      operationId: search-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        default:
+          description: Default error sample response
+  /article_create.html:
+    get:
+      summary: возвращает html article_create.html
+      description: ''
+      operationId: article_create-get
+      responses:
+        default:
+          description: Default error sample response
+  /api/article_create:
+    post:
+      summary: создает новую статью
+      operationId: article-create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArticleCreateRequest'
+      responses:
+        default:
+          description: Default error sample response
+  /profile/{id}:
+    get:
+      summary: возвращает шаблон profile_{id}.html
+      parameters:
+      - in: path
+        required: true
+        name: id
+        schema:
+          type: number
+      responses:
+        default:
+          description: Default error sample response
+  /my_profile:
+    get:
+      parameters:
+      - in: cookie
+        name: profile_id
+        schema:
+          type: string
+          format: guid
+      summary: возвращает шаблон my_profile.html
+      responses:
+        default:
+          description: Default error sample response
+  api/profile/upload_photo_url:
+    post:
+      summary: сохраняет новое фото пользователя скачивая его по URL. CSRF. Сохраняет в static/profile_photo{id}.png
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadPhotoByUrlRequest'
+      responses:
+        default:
+          description: Default error sample response
+  api/profile/upload_photo:
+    post:
+      summary: сохраняет фото профиля из тела запроса. Основной вектор fileName. Сохраняет в static/profile_photo{id}.png
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fileName:
+                  type: string
+                  format: binary
+      responses:
+        default:
+          description: Default error sample response
+      
+components:
+  schemas:
+    LoginRequest:
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        redirect:
+          type: string
+    SearchRequest:
+      properties:
+        search:
+          type: string
+    UploadPhotoByUrlRequest:
+      properties:
+        photo_url:
+          type: string
+    ArticleCreateRequest:
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+      
+    

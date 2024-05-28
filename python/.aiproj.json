@@ -1,0 +1,18 @@
+{
+    "ProjectName": "python",
+    "ProgrammingLanguages": [
+        "Python"
+    ],
+    "ScanModules": [
+        "StaticCodeAnalysis"
+    ],
+    "SkipGitIgnoreFiles": true,
+    "PythonSettings": {
+        "UsePublicAnalysisMethod": false,
+        "DownloadDependencies": false,
+        "CustomParameters": "--log-level Trace --restore-packages false --disable-pm true --disable-mt true"
+    },
+    "BlackBoxSettings": {
+        "Site": "http://localhost"
+    }
+}

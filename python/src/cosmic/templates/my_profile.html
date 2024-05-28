@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile ({{username}})</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cosmicjs/5.6.0/cosmic.min.css">
+</head>
+<body>  
+    
+    <h1>{{ username }}</h1>
+    <h2>Profile Photo</h2>
+    <img src="static/profile_photo{{ userId }}.png" alt="Profile Photo">
+    
+    <form action="api/profile/upload_photo" method="post" enctype="multipart/form-data">
+        <label for="profile-photo">Upload Profile Photo:</label>
+        <input type="file" id="profile-photo" name="profile-photo">
+        <button type="submit">Upload</button>
+    </form>
+
+    <form action="api/profile/upload_photo_url" method="post">
+        <label for="profile-photo-url">Upload Profile Photo from URL:</label>
+        <input type="url" id="profile-photo-url" name="profile-photo-url">
+        <button type="submit">Upload</button>
+    </form>
+    <li>
+        <!-- articles list -->
+        {% for article in articles %}
+            <h2><a href="/article/{{ article.articleId }}">{{ article.title }}</a></h2>
+            <p>{{ article.content }}</p>
+        {% endfor %}
+    </li>
+</body>
+</body>
+</html>
