@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blog</title>
+    <style>
+        .login-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cosmicjs/5.6.0/cosmic.min.css">
+</head>
+<body>
+    <header class="cosmic-header">
+        <h1>Cosmic Blogs</h1>
+    </header>
+    {{ if .authorized }}
+        <button class="login-button" id="logout-button">Logout</button>  
+    {{ else }}
+        <button class="login-button" onclick="location.href='login'">Login</button>
+    {{ end }}
+    
+    <h1>Articles</h1>
+    <ul id="article-list"></ul>
+
+    <script>
+        // Fetch articles from the API
+        fetch('/api/articles')
+            .then(response => response.json())
+            .then(articles => {
+                const articleList = document.getElementById('article-list');
+                articles.forEach(article => {
+                    const listItem = document.createElement('li');
+                    const title = document.createElement('h2');
+                    title.textContent = article.title;
+                    listItem.appendChild(title);
+
+                    const author = document.createElement('p');
+                    const authorLink = document.createElement('a');
+                    authorLink.href = article.authorProfileUrl;
+                    authorLink.textContent = article.author;
+                    author.appendChild(authorLink);
+                    listItem.appendChild(author);
+
+                    const content = document.createElement('p');
+                    content.textContent = article.content;
+                    listItem.appendChild(content);
+
+                    articleList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching articles:', error);
+            });
+
+            const jwtCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
+            const logoutButton = document.getElementById('logout-button');
+            if (logoutButton){
+                logoutButton.textContent = 'Logout';
+                
+                if (jwtCookie) {
+                    logoutButton.addEventListener('click', async () => {
+                        try {
+                            const response = await fetch('/api/logout', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            });
+                            
+                            if (response.ok) {
+                                // Redirect to home page
+                                window.location.href = '/';
+                            } else {
+                                console.error('Logout failed');
+                            }
+                        } catch (error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                    document.body.appendChild(logoutButton);
+                }
+            }
+    </script>
+</body>
+</body>
+</html>
