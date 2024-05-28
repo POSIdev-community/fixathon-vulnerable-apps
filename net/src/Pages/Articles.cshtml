@@ -1,0 +1,18 @@
+﻿@page "{id:long}"
+@model ArticlesModel
+
+<!--This page is for filling from server-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cosmicjs/5.6.0/cosmic.min.css">
+</head>
+<body>
+<article>
+    <h1>@Model.Article.Title</h1>
+    <p><a href="profiles/@Model.Article.UserId">@Model.Article.Author</a></p>
+        <p>@Html.Raw(Model.Article.Title);</p>
+</article>
+</body>
+</html>

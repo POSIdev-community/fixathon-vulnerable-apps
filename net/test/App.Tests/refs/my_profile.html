@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cosmicjs/5.6.0/cosmic.min.css">
+</head>
+<body>  
+    
+<h1>GalacticExplorer</h1>
+<h2>Profile Photo</h2>
+<img src="static/profile_photo0.png" alt="Profile Photo">
+    
+<form action="api/profile/upload_photo" method="post">
+    <label for="profile-photo">Upload Profile Photo:</label>
+    <input type="file" id="profile-photo" name="profile-photo">
+    <button type="submit">Upload</button>
+</form>
+
+<form action="api/profile/upload_photo_url" method="post">
+    <label for="profile-photo-url">Upload Profile Photo from URL:</label>
+    <input type="url" id="profile-photo-url" name="profile-photo-url">
+    <button type="submit">Upload</button>
+</form>
+<li>
+        <ul>
+            <article>
+                <h1><a href="/articles/1">&#x418;&#x441;&#x441;&#x43B;&#x435;&#x434;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x435; &#x413;&#x430;&#x43B;&#x430;&#x43A;&#x442;&#x438;&#x43A;&#x438; &#x410;&#x43D;&#x434;&#x440;&#x43E;&#x43C;&#x435;&#x434;&#x44B;</a></h1>
+                    <p>Наше путешествие в Галактику Андромеды раскрыло захватывающие виды и таинственные явления.;</p>
+            </article>
+        </ul>
+        <ul>
+            <article>
+                <h1><a href="/articles/4">&#x41F;&#x443;&#x442;&#x435;&#x448;&#x435;&#x441;&#x442;&#x432;&#x438;&#x435; &#x43A; &#x43A;&#x440;&#x430;&#x44E; &#x412;&#x441;&#x435;&#x43B;&#x435;&#x43D;&#x43D;&#x43E;&#x439;</a></h1>
+                    <p>Отправляйтесь в эпическое путешествие к самым дальним пределам космоса, где время и пространство искривляются в невообразимых масштабах.;</p>
+            </article>
+        </ul>
+</li>
+</body>
+</html>
