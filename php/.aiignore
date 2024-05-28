@@ -1,0 +1,9 @@
+﻿.git/
+.idea/
+.vscode/
+.vs/
+*.gif
+.gitignore
+.gitmodules
+.gitattributes
+vendor/*

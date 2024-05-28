@@ -1,0 +1,14 @@
+﻿{
+    "ProjectName": "php",
+    "ProgrammingLanguages": [
+        "Php"
+    ],
+    "ScanModules": [
+        "StaticCodeAnalysis"
+    ],
+    "SkipGitIgnoreFiles": true,
+    "PhpSettings": {
+        "UsePublicAnalysisMethod": true,
+        "DownloadDependencies": false
+    }
+}
